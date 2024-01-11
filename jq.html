@@ -6,6 +6,7 @@
     <title>Ssearch</title>
 </head>
 <body>
+    <script   src="https://code.jquery.com/jquery-3.7.1.slim.min.js"   integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="   crossorigin="anonymous"></script>
     <input type="text" name="username" id="username" autocomplete="off">
     <input type="button" value="submit" id="submit">
     <hr>
@@ -33,23 +34,15 @@ let username = null;
 
 submit.addEventListener('click',()=>{
 username = document.getElementById('username').value;
-search();
 })
 
-        async function search() {
-            if (username) {
-
-
-  fetch(`https://api.scrims.network/v1/user?username=${username}`, { 
-  method: 'GET'
-})
-.then(function(response) { return response.json(); })
-.then(function(json) {
-  jsontext.innerHTML=json;
+$.getJSON('https://api.scrims.network/user?username=oVinh', { get_param: 'value' }, function(data) {
+    $.each(data, function(index, element) {
+        $('body').append($('<div>', {
+            text: element.name
+        }));
+    });
 });
-
-            }
-        }
     </script>
 </body>
 </html>
