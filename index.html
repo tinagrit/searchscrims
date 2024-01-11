@@ -16,6 +16,8 @@
     <p><strong>Last session playtime: </strong><span id="lastsessionplay"></span></p>
     <br>
     <p><strong>Total playtime: </strong><span id="totalplay"></span></p>
+    <hr>
+    <p id="jsontext"></p>
 
     <script>
 const submit = document.getElementById('submit');
@@ -24,6 +26,8 @@ const lastlogin = document.getElementById('lastlogin');
 const lastlogout = document.getElementById('lastlogout');
 const lastsessionplay = document.getElementById('lastsessionplay');
 const totalplay = document.getElementById('totalplay');
+
+const jsontext=document.getElementById('jsontext')
 
 let username = null;
 
@@ -35,11 +39,15 @@ search();
         async function search() {
             if (username) {
 
-  const response = await fetch(`https://api.scrims.network/v1/user?username=${username}`);
-  const output = await response.json();
-  console.log(output);
 
-  
+  fetch(`https://api.scrims.network/v1/user?username=${username}`, { 
+  method: 'GET'
+})
+.then(function(response) { return response.json(); })
+.then(function(json) {
+  jsontext.innerHTML=json;
+});
+
             }
 }
     </script>
