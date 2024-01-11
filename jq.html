@@ -36,12 +36,15 @@ submit.addEventListener('click',()=>{
 username = document.getElementById('username').value;
 })
 
+submit.addEventListener('click',()=>{
 $.getJSON('https://api.scrims.network/user?username=oVinh', { get_param: 'value' }, function(data) {
+    console.log(data)
     $.each(data, function(index, element) {
         $('body').append($('<div>', {
             text: element.name
         }));
     });
+});
 });
     </script>
 </body>
