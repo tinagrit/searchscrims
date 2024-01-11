@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ssearch</title>
+</head>
+<body>
+    <input type="text" name="username" id="username" autocomplete="off">
+    <input type="button" value="submit" id="submit">
+    <hr>
+    <p><strong>Last login: </strong><span id="lastlogin"></span></p>
+    <br>
+    <p><strong>Last logout: </strong><span id="lastlogout"></span></p>
+    <br>
+    <p><strong>Last session playtime: </strong><span id="lastsessionplay"></span></p>
+    <br>
+    <p><strong>Total playtime: </strong><span id="totalplay"></span></p>
+
+    <script>
+const submit = document.getElementById('submit');
+
+const lastlogin = document.getElementById('lastlogin');
+const lastlogout = document.getElementById('lastlogout');
+const lastsessionplay = document.getElementById('lastsessionplay');
+const totalplay = document.getElementById('totalplay');
+
+let username = null;
+
+submit.addEventListener('click',()=>{
+username = document.getElementById('username').value;
+search();
+})
+
+        async function search() {
+            if (username) {
+
+  const response = await fetch(`https://api.scrims.network/v1/user?username=${username}`);
+  const output = await response.json();
+  console.log(output);
+
+  
+            }
+}
+    </script>
+</body>
+</html>
