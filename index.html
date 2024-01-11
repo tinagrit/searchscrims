@@ -20,36 +20,34 @@
     <p id="jsontext"></p>
 
     <script>
-const submit = document.getElementById('submit');
+        const submit = document.getElementById('submit');
 
-const lastlogin = document.getElementById('lastlogin');
-const lastlogout = document.getElementById('lastlogout');
-const lastsessionplay = document.getElementById('lastsessionplay');
-const totalplay = document.getElementById('totalplay');
+        const lastlogin = document.getElementById('lastlogin');
+        const lastlogout = document.getElementById('lastlogout');
+        const lastsessionplay = document.getElementById('lastsessionplay');
+        const totalplay = document.getElementById('totalplay');
 
-const jsontext=document.getElementById('jsontext')
+        const jsontext=document.getElementById('jsontext')
 
-let username = null;
+        let username = null;
 
-submit.addEventListener('click',()=>{
-username = document.getElementById('username').value;
-search();
-})
+        submit.addEventListener('click',()=>{
+            username = document.getElementById('username').value;
+            search();
+        })
 
-        async function search() {
-            if (username) {
-
-
-  fetch(`https://api.scrims.network/v1/user?username=${username}`, { 
-  method: 'GET'
-})
-.then(function(response) { return response.json(); })
-.then(function(json) {
-  jsontext.innerHTML=json;
-});
-
-            }
+        const search = () => {
+            fetch('https://api.scrims.network/v1/user?username=yudb', { 
+                method: 'GET'
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(json) {
+                console.log(json)
+            });
         }
+
+
+
     </script>
 </body>
 </html>
