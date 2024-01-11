@@ -31,19 +31,15 @@ const totalplay = document.getElementById('totalplay');
 const jsontext=document.getElementById('jsontext')
 
 let username = null;
-
+let dataex=null;
 submit.addEventListener('click',()=>{
 username = document.getElementById('username').value;
 })
 
 submit.addEventListener('click',()=>{
-$.getJSON('https://api.scrims.network/user?username=oVinh', { get_param: 'value' }, function(data) {
-    console.log(data)
-    $.each(data, function(index, element) {
-        $('body').append($('<div>', {
-            text: element.name
-        }));
-    });
+$.getJSON('https://api.scrims.network/v1/user?username=oVinh', { get_param: 'value' }, function(data) {
+    console.log(data);
+    dataex=data;
 });
 });
     </script>
